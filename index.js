@@ -67,18 +67,12 @@ function DrumPad({des, id, url, setDisplayText, powerStatus, volume}){
         playClip(clip,des)
       }
     }
-    // React.useEffect(()=>{
-      if(powerStatus){
-        document.onkeypress = function (e) {
-            const clip=document.querySelector("audio#"+e.key.toUpperCase())
-            playClip(clip,clip.getAttribute("data-des"))
-         }
-      }else{
-        document.onkeypress = function (e) {
-          
-       }
-      }
-    // },[powerStatus])
+    if(powerStatus){
+      document.onkeypress = function (e) {
+          const clip=document.querySelector("audio#"+e.key.toUpperCase())
+          playClip(clip,clip.getAttribute("data-des"))
+        }
+    }
     return(
         <button 
           className="drum-pad" 
@@ -110,12 +104,6 @@ function Dashboard({displayText, powerStatus, setPowerStatus, volume, setVolume}
   function handleClick(){
     setPowerStatus(prev=>!prev)
   }
-  // React.useEffect(()=>{
-  //   const volume = document.querySelector("#volume-control")
-  //   volume.addEventListener("change", function(e) {
-  //     setVolume(e.currentTarget.value/100)
-  //   })
-  // },[volume])
   function handleChange(e){
     setVolume(e.currentTarget.value)
   }
