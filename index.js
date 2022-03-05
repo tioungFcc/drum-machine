@@ -72,6 +72,10 @@ function DrumPad({des, id, url, setDisplayText, powerStatus, volume}){
           const clip=document.querySelector("audio#"+e.key.toUpperCase())
           playClip(clip,clip.getAttribute("data-des"))
         }
+    }else{
+      document.onkeypress = function (e) {
+        
+      }
     }
     return(
         <button 
