@@ -67,16 +67,14 @@ function DrumPad({des, id, url, setDisplayText, powerStatus, volume}){
         playClip(clip,des)
       }
     }
-    if(powerStatus){
+    React.useEffect(()=>{
       document.onkeypress = function (e) {
+        if(powerStatus){
           const clip=document.querySelector("audio#"+e.key.toUpperCase())
           playClip(clip,clip.getAttribute("data-des"))
-        }
-    }else{
-      document.onkeypress = function (e) {
-        
+        }else{}
       }
-    }
+    },[powerStatus,volume])
     return(
         <button 
           className="drum-pad" 
